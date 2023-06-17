@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <title>Formatting Code - Scalable and Modular Architecture for CSS</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="//use.typekit.com/riu0bhz.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+</head>
+<body>
+  <div class="l-user">
+    <div class="l-constrained l-constrained-tighter">
+      SMACSS was written in 2011. This site remains for archival and educational purposes. 
+    </div>
+  </div>
+<div class="l-header">
+    <div class="l-constrained">
+        <div class="logo">
+        <h2 class="hd"><a href="/"><span class="hd-line hd-line1">Scalable and Modular</span> <span class="hd-line hd-line2">Architecture for CSS</span></a></h2>
+                </div>
+    </div>
+</div>
+<div class="l-content">
+    <div class="l-constrained">
+            <div class="article"><article>
+ <h1>Formatting Code</h1>
+    <p>Everybody has their own way. The tools and techniques that you use are ones that you have tried either through trial and error or you have tried what you heard works for other people. When I first got into development, I used Dreamweaver. It had plenty of features and allowed me to build static HTML sites quickly and efficiently. After seeing a co-worker using Ultraedit and seeing how fast he was able to get work done, I started to learn it as a way of complementing my existing tool set. The same has occurred with the way I code. I will see a technique or style that someone else uses and I will assimilate those techniques into my own way of working.</p>
+
+    <p>This section, Formatting Code, is a brief look at how I code my work and do so in a way that seems to work well for others having to continue working on my code.</p> 
+
+
+    <h2 id="single">Single line versus multiple lines</h2>
+    <p>For many years, I have coded my CSS using the single line approach. This means that all of the properties for a given rule set are declared on the same line. This allows for quick scanning of the selectors along the left. Being able to scan selectors has traditionally been more important to me than seeing properties nicely lined up. Up until just a couple years ago, the list of properties assigned to a rule set were quite small; it would be unusual to have more than a handful. Therefore, I could find the selector I wanted and all of the properties would be visible on the screen.</p>
+    <p>With CSS3—and the myriad of vendor-specific prefixes that come with it—things can get out of hand rather quickly. Between that and working with a larger team, it was easier for everybody to have each property/value pair on its own line. </p>
+<div class="exm">
+    <p class="exm-caption">CSS3 with the plethora of vendor-prefixed properties can be too much to read easily if all on one line.</p>
+    <pre><code>.module {
+    display: block;
+    height: 200px;
+    width: 200px;
+    float: left;
+    position: relative;
+    
+    border: 1px solid #333;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+
+    -moz-box-shadow: 10px 10px 5px #888;
+    -webkit-box-shadow: 10px 10px 5px #888;
+    box-shadow: 10px 10px 5px #888;
+
+    font-size: 12px;
+    text-transform: uppercase;
+}</code></pre>
+</div>
+<p>In the example, there are 11 properties declared and we could easily have a half-dozen more if we added another feature or two to our module. Having these all on one line would leave the first handful of properties visible on the screen and we would be left scrolling to the right to uncover the rest of the properties. This makes it hard to scan the document and see what properties have been defined.</p>
+<p>There are a few other minor things to note with the example:</p>
+
+<ul>
+    <li>There is a space after the colon.</li>
+    <li>Four spaces before each declaration (no tabs).</li>
+    <li>Properties are grouped by type.</li>
+    <li>Opening bracket on the same line as the rule set.</li>
+    <li>Colour declarations use the short form.</li>
+</ul>
+
+<p>These are all preferential and I will not begrudge you for using a completely different approach. This is just what I have found that feels natural and makes the most sense to me. </p>
+<h2 id="grouping">Grouping Properties</h2>
+<p>Some people organize alphabetically, others don’t organize at all, and others may use some other arbitrary system. I fall in this last category. It's not completely arbitrary, mind you. I would describe it as ordering from most important to least important but what is important when it comes to declaring styles on an element? </p>
+<p>I organize in the following order:</p>
+<ol>
+    <li>Box</li>
+    <li>Border</li>
+    <li>Background</li>
+    <li>Text</li>
+    <li>Other</li>
+</ol>
+<p>Box includes any property that affects the display and position of the box such as <code>display</code>, <code>float</code>, <code>position</code>, <code>left</code>, <code>top</code>, <code>height</code>, <code>width</code> and so on. These are most important to me because they affect the flow of the rest of the document.</p>
+<p>Border includes <code>border</code>, the oft-unused <code>border-image</code>, and <code>border-radius</code>.</p>
+<p>Background comes next. With the advent of CSS3 gradients, background declarations can actually become quite verbose. Once again, vendor prefixes just compound the issue.</p>
+
+<div id="ex2" class="exm">
+<p class="exm-caption">Multiple backgrounds with CSS3 declarations.</p>
+<pre><code>background-color: #6d695c;
+background-image: url("/img/argyle.png");
+background-image:
+  repeating-linear-gradient(-30deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 60px),
+  repeating-linear-gradient(30deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 60px),
+  linear-gradient(30deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1)),
+  linear-gradient(-30deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1));
+background-size: 70px 120px;</code></pre>
+</div>
+<p>Complex patterns are possible with CSS3 gradients but create for lengthy background declarations, and the example doesn't even include CSS3 prefixes. Just imagine how long this declaration would be if it did!</p>
+<p>Text declarations include <code>font-family</code>, <code>font-size</code>, <code>text-transform</code>, <code>letter-spacing</code> and any other CSS properties that affect the display of the type.</p>
+<p>Anything that doesn’t fall into any of the above categories gets added to the end.</p>
+<h2 id="colour">Colour Declarations</h2>
+<p>This may seem like a silly thing to even mention but I have seen different developers do different things. Some like using keywords like <code>black</code> and <code>white</code> but I have always tried to stick to either the 3 digit or 6 digit hex format wherever possible. <code>#000</code> and <code>#FFF</code> are shorter, albeit barely, then their keyword counterparts. Likewise, I wouldn’t use <code>rgb</code> or <code>hsl</code>, since the hex form is shorter. Of course, <code>rgba</code> and <code>hsla</code> have no hex form and they would get used.</p>
+
+
+
+
+</article></div>
+
+<div class="article-aside nav">
+
+<h4>Preface</h4>
+    <ol>
+        <li><a href="/book/about">About the Author</a>
+        <li><a href="/book/">Introduction</a>
+    </ol>
+<h4>Core</h4>
+    <ol start="3">
+        <li><a href="/book/categorizing">Categorizing CSS Rules</a> </li>
+        <li><a href="/book/type-base">Base Rules</a></li>
+        <li><a href="/book/type-layout">Layout Rules</a></li>
+        <li><a href="/book/type-module">Module Rules</a></li>
+        <li><a href="/book/type-state">State Rules</a></li>
+        <li><a href="/book/type-theme">Theme Rules</a></li>
+        <li><a href="/book/state">Changing State</a></li>
+    </ol>
+<h4>Aspects of SMACSS</h4>
+    <ol start="10">
+        <li><a href="/book/applicability">Depth of Applicability</a></li>
+        <li><a href="/book/selectors">Selector Performance</a></li>
+        <li><a href="/book/html5">HTML5 and SMACSS</a></li>
+        <li><a href="/book/prototyping">Prototyping</a></li>
+        <li><a href="/book/preprocessors">Preprocessors</a></li>
+        <li><a href="/book/drop-the-base">Drop the Base</a></li>
+        <li><a href="/book/icon-module">The Icon Module</a></li>
+        <li><a href="/book/inheritance">Complicated Inheritance</a></li>
+        <li><a href="/book/screencast-1">Screencast: Applying the Principles</a></li>
+        <li><a href="/book/screencast-2">Screencast: Avoiding Content-specific Context</a></li>
+    </ol>
+<h4>Appendix</h4>
+    <ol start="20">
+        <li><a href="/book/formatting">Formatting Code</a></li>
+        <li><a href="/book/resources">Resources</a></li>
+    </ol>
+
+</div>
+
+
+
+    </div> <!-- constrained -->
+</div>
+ 
+<div class="l-footer">
+    <div class="l-constrained">
+        <p>        &larr; <a href="/">Home</a> |         &uarr; <a href="#top">Top of Page</a></p>
+
+<div>
+    <h2>About SMACSS</h2>
+    <p><i>Scalable and Modular Architecture for CSS</i> is an approach to web development written by me, Jonathan Snook. You can reach me on my blog at <a href="http://snook.ca/">Snook.ca</a>. </p> 
+    <p><a href="/privacy">Privacy Policy</a> | <a href="/contact">Contact</a></p>
+    <p>&copy; Snook.ca Web Development, Inc. All rights reserved.</p>
+</div>
+<!--End mc_embed_signup-->
+    </div>
+</div>
+
+	</body>
+</html>
+
